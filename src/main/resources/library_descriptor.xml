@@ -1,0 +1,21 @@
+<externalLibrary xmlns="library">
+  <language>JAVA</language>
+  <libraryFunctions>
+    <libraryFunction>
+      <name>hqFilterLong</name>
+      <function_type>SCALAR</function_type>
+      <argument_type>AINT32,AINT32,AINT32</argument_type>
+      <return_type>{{AINT32}}</return_type>
+      <definition>HQFilterLongFactory
+      </definition>
+    </libraryFunction>
+    <libraryFunction>
+      <name>hqFilter</name>
+      <function_type>SCALAR</function_type>
+      <argument_type>TweetType,AINT32,AINT32</argument_type>
+      <return_type>TweetType</return_type>
+      <definition>HQFilterFactory
+      </definition>
+    </libraryFunction>
+  </libraryFunctions>
+</externalLibrary>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>asterixdb-HQFilter-UDF</groupId>
+    <artifactId>asterixdb-HQFilter-UDF</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>6</source>
+                    <target>6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <descriptors>src/main/assembly/binary-assembly-libzip.xml</descriptors>
+                        </configuration>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.rat</groupId>
+                <artifactId>apache-rat-plugin</artifactId>
+                <configuration>
+                    <licenses combine.children="append">
+                        <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                            <licenseFamilyCategory>Kermit</licenseFamilyCategory>
+                            <licenseFamilyName>Kermit Project</licenseFamilyName>
+                            <notes>The UTF-8 sample "I Can Eat Glass" from The Kermit Project (license in LICENSE file)</notes>
+                            <patterns>Copyright © 1981-2011, Trustees of Columbia University in the City of New York. All rights reserved.</patterns>
+                        </license>
+                    </licenses>
+                    <licenseFamilies combine.children="append">
+                        <licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
+                            <familyName>Kermit Project</familyName>
+                        </licenseFamily>
+                    </licenseFamilies>
+                    <excludes combine.children="append">
+                        <exclude>src/test/resources/classad/**</exclude> <!-- HTCondor (license in LICENSE file) -->
+                        <exclude>src/test/resources/record.json</exclude> <!-- https://issues.apache.org/jira/browse/ASTERIXDB-1850 -->
+                        <exclude>src/test/resources/change_feed.csv</exclude>
+                        <exclude>src/test/resources/test_tweets.txt</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.asterix/asterix-external-data -->
+        <dependency>
+            <groupId>org.apache.asterix</groupId>
+            <artifactId>asterix-external-data</artifactId>
+            <version>0.9.4.1</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
